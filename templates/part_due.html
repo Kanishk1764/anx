@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part Due - Inventory Management</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Inventory Management System</h1>
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('part_due') }}">Part Due</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('active_dues') }}">Active Dues List</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="content">
+        <h2>Enter Part Due Details</h2>
+        <form method="POST">
+            <div class="form-group">
+                <label for="reg_no">Registration Number:</label>
+                <input type="text" id="reg_no" name="reg_no" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="model_name">Model Name:</label>
+                <input type="text" id="model_name" name="model_name" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="part_required">Part Required:</label>
+                <select id="part_required" name="part_required" class="form-control" required>
+                    {% for part in parts %}
+                    <option value="{{ part }}">{{ part }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="dealership">Dealership:</label>
+                <select id="dealership" name="dealership" class="form-control" required>
+                    <option value="Dealership 1">Dealership 1</option>
+                    <option value="Dealership 2">Dealership 2</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+</body>
+</html>
